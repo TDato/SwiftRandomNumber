@@ -12,11 +12,14 @@ var randomNumber = 1
 var continueGuessing = true
 var keepPlaying = true
 var input = ""
+var numGuesses = 0
+var numPlays = 1
 
 while keepPlaying
 {
     randomNumber = Int(arc4random_uniform(101)) // get a random number between 0 and 100
-    print("The random number to guess is: \(randomNumber)")
+    // uncomment to display the correct number for testing purposes
+    //print("The random number to guess is: \(randomNumber)")
     
     while continueGuessing
     {
@@ -37,12 +40,16 @@ while keepPlaying
             {
                 // input too high
                 print("Your guess is too high!")
+                numGuesses += 1
             }
             else
             {
                 // input too low
                 print("Your guess is too low!")
+                numGuesses += 1
             }
+            
+            print("You have guessed \(numGuesses) time(s)")
         }
         else
         {
@@ -59,7 +66,13 @@ while keepPlaying
     if input == "N" || input == "n"
     {
         keepPlaying = false
+        print("You have played \(numPlays) time(s)")
     }
+    else
+    {
+        numPlays += 1
+    }
+    numGuesses = 0
     continueGuessing = true
 }
 
